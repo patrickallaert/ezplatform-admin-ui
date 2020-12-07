@@ -35,8 +35,8 @@ class EzPlatformAdminUiExtension extends Extension implements PrependExtensionIn
         $loader->load('services.yaml');
         $loader->load('role.yaml');
 
-        $enableBehat = $container->hasParameter('ezplatform.behat.enabled') && $container->getParameter('ezplatform.behat.enabled');
-        if ($enableBehat) {
+        $shouldLoadBehatServices = $this->shouldLoadBehatServices($container);
+        if ($shouldLoadBehatServices) {
             $loader->load('services/behat/feature_contexts.yaml');
             $loader->load('services/behat/pages.yaml');
             $loader->load('services/behat/components.yaml');
@@ -144,5 +144,11 @@ class EzPlatformAdminUiExtension extends Extension implements PrependExtensionIn
                 ],
             ],
         ]);
+    }
+
+    private function shouldLoadBehatServices(ContainerBuilder $container): bool
+    {
+        return $container->hasParameter('ezplatform.behat.enabled')
+            && $container->getParameter('ezplatform.behat.enabled') === true;
     }
 }

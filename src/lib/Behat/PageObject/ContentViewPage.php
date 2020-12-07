@@ -111,24 +111,18 @@ class ContentViewPage extends Page
         $this->argumentParser = $argumentParser;
     }
 
-    public function startCreatingContent(string $contentTypeName): ContentUpdateItemPage
+    public function startCreatingContent(string $contentTypeName)
     {
         $this->rightMenu->clickButton('Create');
         $this->contentTypePicker->verifyIsLoaded();
         $this->contentTypePicker->select($contentTypeName);
-        $this->contentUpdatePage->verifyIsLoaded();
-
-        return $this->contentUpdatePage;
     }
 
-    public function startCreatingUser(): UserUpdatePage
+    public function startCreatingUser()
     {
         $this->rightMenu->clickButton('Create');
         $this->contentTypePicker->verifyIsLoaded();
         $this->contentTypePicker->select('User');
-        $this->userUpdatePage->verifyIsLoaded();
-
-        return $this->userUpdatePage;
     }
 
     public function goToSubItem(string $contentItemName): void

@@ -52,9 +52,8 @@ class RichText extends FieldTypeComponent
 
         $this->getHTMLPage()->find($this->getLocator('styleDropdown'))->click();
 
-        $blockStyleSelector = $this->getLocator('blockstyle')->withDescendant(new VisibleCSSLocator('style', $style));
-
-        $this->getHTMLPage()->find($blockStyleSelector)->click();
+        $blockStyleLocator = new VisibleCSSLocator('blockStyle', sprintf($this->getLocator('blockStyle')->getSelector(), $style));
+        $this->getHTMLPage()->find($blockStyleLocator)->click();
     }
 
     public function insertNewLine(): void
@@ -142,9 +141,8 @@ class RichText extends FieldTypeComponent
             throw new Exception(sprintf('Unsupported direction: %s', $direction));
         }
 
-        $moveSelector = $this->getLocator('moveButton')->withDescendant(new VisibleCSSLocator('direction', $direction));
-
-        $this->getHTMLPage()->find($moveSelector)->click();
+        $moveLocator = new VisibleCSSLocator('moveButton', sprintf($this->getLocator('moveButton')->getSelector(), $direction));
+        $this->getHTMLPage()->find($moveLocator)->click();
     }
 
     protected function specifyLocators(): array

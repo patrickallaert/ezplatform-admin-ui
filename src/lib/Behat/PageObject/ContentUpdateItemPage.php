@@ -50,7 +50,7 @@ class ContentUpdateItemPage extends Page
         $this->rightMenu->verifyIsLoaded();
     }
 
-    public function setExpectedPageTitle(string $title)
+    public function setExpectedPageTitle(string $title): void
     {
         $this->pageTitle = $title;
     }
@@ -60,12 +60,12 @@ class ContentUpdateItemPage extends Page
         return 'Content Update';
     }
 
-    public function fillFieldWithValue($label, array $value)
+    public function fillFieldWithValue(string $label, array $value): void
     {
         $this->getField($label)->setValue($value);
     }
 
-    public function close()
+    public function close(): void
     {
         $this->getHTMLPage()->find($this->getLocator('closeButton'))->click();
     }
