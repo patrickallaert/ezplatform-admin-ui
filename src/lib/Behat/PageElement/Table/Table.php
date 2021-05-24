@@ -14,7 +14,7 @@ use EzSystems\Behat\Browser\Locator\CSSLocator;
 use EzSystems\Behat\Browser\Locator\LocatorCollection;
 use EzSystems\Behat\Browser\Locator\LocatorInterface;
 use Behat\Mink\Session;
-use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Pagination;
 use PHPUnit\Framework\Assert;

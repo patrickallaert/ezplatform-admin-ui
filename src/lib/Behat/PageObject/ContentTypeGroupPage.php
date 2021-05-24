@@ -10,9 +10,9 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 
 use Behat\Mink\Session;
 use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use EzSystems\Behat\Browser\Routing\Router;
 use Behat\Mink\Session;
-use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;

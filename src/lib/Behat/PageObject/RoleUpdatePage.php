@@ -11,7 +11,7 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 use Exception;
 use EzSystems\Behat\Browser\Element\ElementInterface;
 use Behat\Mink\Session;
-use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\RightMenu;

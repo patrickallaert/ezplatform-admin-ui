@@ -10,7 +10,7 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
-use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\UniversalDiscoveryWidget;
