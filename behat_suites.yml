@@ -1,9 +1,9 @@
-ibexa:
+default:
     extensions:
         Behat\MinkExtension:
             files_path: '%paths.base%/vendor/ezsystems/ezplatform-admin-ui/src/lib/Behat/TestFiles/'
     suites:
-        adminui:
+        admin-ui:
             paths:
               - '%paths.base%/vendor/ezsystems/ezplatform-admin-ui/features/standard'
             filters:
