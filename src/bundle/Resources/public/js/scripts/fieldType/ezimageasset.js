@@ -3,6 +3,7 @@
     const SELECTOR_INPUT_FILE = 'input[type="file"]';
     const SELECTOR_INPUT_DESTINATION_CONTENT_ID = '.ez-data-source__destination-content-id';
     const SELECTOR_LABEL_WRAPPER = '.ez-field-edit__label-wrapper';
+    const SELECTOR_FILESIZE_NOTICE = '.ez-data-source__message--filesize';
     const token = doc.querySelector('meta[name="CSRF-Token"]').content;
     const showErrorNotification = eZ.helpers.notification.showErrorNotification;
     const showSuccessNotification = eZ.helpers.notification.showSuccessNotification;
@@ -126,6 +127,7 @@
          */
         updateData(destinationContentId, destinationContentName, destinationLocationId, image) {
             const preview = this.fieldContainer.querySelector('.ez-field-edit__preview');
+            const previewVisual = preview.querySelector('.ez-field-edit-preview__visual');
             const previewImg = preview.querySelector('.ez-field-edit-preview__media');
             const previewAlt = preview.querySelector('.ez-field-edit-preview__image-alt input');
             const previewActionPreview = preview.querySelector('.ez-field-edit-preview__action--preview');
@@ -134,7 +136,9 @@
                 contentId: destinationContentId,
                 locationId: destinationLocationId,
             });
+            const additionalData = Array.isArray(image.additionalData) ? '{}' : JSON.stringify(image.additionalData);
 
+            previewVisual.setAttribute('data-additional-data', additionalData);
             previewImg.setAttribute('src', image ? image.uri : '//:0');
             previewImg.classList.toggle('d-none', image === null);
             previewAlt.value = image.alternativeText;
@@ -171,7 +175,6 @@
                     onConfirm,
                     onCancel,
                     title,
-                    allowedContentTypes: [imageAssetMapping['contentTypeIdentifier']],
                     ...config,
                 }),
                 udwContainer
@@ -225,7 +228,15 @@
         }
     }
 
-    class EzImageAssetFieldValidator extends eZ.BaseFileFieldValidator {}
+    class EzImageAssetFieldValidator extends eZ.BaseFileFieldValidator {
+        validateFileSize(event) {
+            event.currentTarget.dispatchEvent(new CustomEvent('ez-invalid-file-size'));
+
+            return {
+                isError: false,
+            };
+        }
+    }
 
     doc.querySelectorAll(SELECTOR_FIELD).forEach((fieldContainer) => {
         const validator = new EzImageAssetFieldValidator({
@@ -243,7 +254,7 @@
                     selector: `${SELECTOR_INPUT_FILE}`,
                     eventName: 'ez-invalid-file-size',
                     callback: 'showFileSizeError',
-                    errorNodeSelectors: [SELECTOR_LABEL_WRAPPER],
+                    errorNodeSelectors: [SELECTOR_FILESIZE_NOTICE],
                 },
             ],
         });

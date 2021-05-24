@@ -32,7 +32,7 @@
                             {{ form_widget(form_content_location_remove.locations[location.id], {'attr': {'class': 'ez-input ez-input--checkbox', 'disabled': not location.canDelete}}) }}
                         </td>
                         <td class="ez-table__cell">
-                            {% include '@ezdesign/ui/location_path.html.twig' with {'locations': location.pathLocations} %}
+                            {% include '@ezdesign/ui/location_path.html.twig' with {'locations': location.pathLocations, 'link_last_element': true} %}
                         </td>
                         <td class="ez-table__cell">{{ location.childCount }}</td>
                         <td class="ez-table__cell">
@@ -52,7 +52,7 @@
                                     {% if not can_hide[location.id] %} disabled="disabled"{% endif %}
                                     value="{{ location.id }}"/>
                             </label>
-                            {% if location.contentInfo.isHidden or not is_location_visible %}
+                            {% if location.invisible %}
                                 <span class="ml-2">
                                     {{ 'tab.locations.hidden_content_or_superior'|trans|desc('Content or its ancestor is hidden') }}
                                 </span>
@@ -75,6 +75,23 @@
         </table>
     </div>
     {{ form_end(form_content_location_remove) }}
+
+    {% if pager is defined and pager.haveToPaginate %}
+        <div class="row justify-content-center align-items-center mb-2 ez-pagination__spacing">
+                <span class="ez-pagination__text">
+                    {{ 'pagination.viewing'|trans({
+                        '%viewing%': pager.currentPageResults|length,
+                        '%total%': pager.nbResults}, 'pagination')|desc('Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items')|raw }}
+                </span>
+        </div>
+        <div class="row justify-content-center align-items-center ez-pagination__btn mb-5">
+            {{ pagerfanta(pager, 'ez', pager_options|merge({
+                'routeParams': {
+                    '_fragment': 'ez-tab-location-view-locations'
+                }
+            })) }}
+        </div>
+    {% endif %}
 
     {{ form(form_content_location_update_visibility, {'action': path('ezplatform.location.update_visibility')}) }}
     {{ form(form_content_location_main_update, {'action': path('ezplatform.content.update_main_location')}) }}
@@ -112,7 +129,7 @@
     </button>
     {% include '@ezdesign/ui/modal/bulk_delete_confirmation.html.twig' with {
         'id': modal_data_target,
-        'message': 'tab.locations.modal.message'|trans|desc('Do you want to delete the Location?'),
+        'message': 'tab.locations.modal.message'|trans|desc('Do you want to delete the Location? All its sub-items will be sent to Trash.'),
         'data_click': '#' ~ form_remove.remove.vars.id,
     } %}
 {% endmacro %}

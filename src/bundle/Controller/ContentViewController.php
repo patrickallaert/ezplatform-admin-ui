@@ -162,7 +162,6 @@ class ContentViewController extends Controller
             $this->supplyPathLocations($view);
             $this->subitemsContentViewParameterSupplier->supply($view);
             $this->supplyContentActionForms($view);
-            $this->supplyIsLocationInvisible($view);
             $this->supplyContentReverseRelations($view);
             $this->supplyContentTreeParameters($view);
         }
@@ -327,7 +326,8 @@ class ContentViewController extends Controller
                     $this->permissionResolver,
                     $contentInfo,
                     $this->lookupLimitationsTransformer,
-                    $languageCodes
+                    $languageCodes,
+                    $this->locationService
                 ),
             ]
         );
@@ -513,31 +513,14 @@ class ContentViewController extends Controller
     private function supplyContentReverseRelations(ContentView $view): void
     {
         $contentInfo = $view->getLocation()->getContentInfo();
-        $relations = $this->permissionResolver->sudo(
-            function (Repository $repository) use ($contentInfo) {
-                return $repository->getContentService()->loadReverseRelations($contentInfo);
+
+        $hasReverseRelations = $this->permissionResolver->sudo(
+            static function (Repository $repository) use ($contentInfo): bool {
+                return $repository->getContentService()->countReverseRelations($contentInfo) > 0;
             },
             $this->repository
         );
 
-        $view->addParameters(['content_has_reverse_relations' => \count($relations) > 0]);
-    }
-
-    /**
-     * @param \eZ\Publish\Core\MVC\Symfony\View\ContentView $view
-     */
-    private function supplyIsLocationInvisible(ContentView $view)
-    {
-        $location = $view->getLocation();
-        $parentLocation = $this->permissionResolver->sudo(
-            function (Repository $repository) use ($location) {
-                return $repository->getLocationService()->loadLocation($location->parentLocationId);
-            },
-            $this->repository
-        );
-        $isLocationVisible = !($parentLocation->hidden || $parentLocation->invisible);
-
-        // Location is invisible when parent location is not visible.
-        $view->addParameters(['is_location_visible' => $isLocationVisible]);
+        $view->addParameters(['content_has_reverse_relations' => $hasReverseRelations]);
     }
 }

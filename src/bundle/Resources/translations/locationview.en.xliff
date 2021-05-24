@@ -41,11 +41,6 @@
         <target state="new">This Content item or its Location is hidden.</target>
         <note>key: content.hidden.message</note>
       </trans-unit>
-      <trans-unit id="9c91d85bc7658ec7dc6bbb07b720979177c0846a" resname="content.view.subitems">
-        <source>Sub-items</source>
-        <target state="new">Sub-items</target>
-        <note>key: content.view.subitems</note>
-      </trans-unit>
       <trans-unit id="4f1f7e7763187d69da3f75ebfb74d391a451cec6" resname="content.view.subitems.bulk_action.limited_permissions">
         <source>Limited user permissions</source>
         <target state="new">Limited user permissions</target>
@@ -202,8 +197,8 @@
         <note>key: tab.locations.main</note>
       </trans-unit>
       <trans-unit id="e704444c07d73c053f58f427ebcc0b6b2042c63d" resname="tab.locations.modal.message">
-        <source>Do you want to delete the Location?</source>
-        <target state="new">Do you want to delete the Location?</target>
+        <source>Do you want to delete the Location? All its sub-items will be sent to Trash.</source>
+        <target state="new">Do you want to delete the Location? All its sub-items will be sent to Trash.</target>
         <note>key: tab.locations.modal.message</note>
       </trans-unit>
       <trans-unit id="7514a2a1e82c82fa3a197dc3da8be56a9c68f136" resname="tab.locations.path">

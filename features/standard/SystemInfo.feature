@@ -28,10 +28,10 @@ Feature: System info verification
         | ezsystems/ezplatform-kernel             |
         | ezsystems/ezplatform-content-forms      |
 
-  @javascript
-  Scenario: Check Database System Information
-    When I go to "Database" tab in System Information
-    Then I see "Database" system information table
+  @javascript @common
+  Scenario: Check Repository System Information
+    When I go to "Repository" tab in System Information
+    Then I see "Repository" system information table
 
   @javascript
   Scenario: Check Hardware System Information
