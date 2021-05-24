@@ -39,7 +39,7 @@ SCRIPT;
             }, explode(',', $parameters['value'])
         ));
 
-        $this->testEnv->getSession()->getDriver()->executeScript(sprintf($this->setKeywordsValueScript, $parsedValue));
+        $this->getSession()->getDriver()->executeScript(sprintf($this->setKeywordsValueScript, $parsedValue));
     }
 
     public function verifyValueInItemView(array $values): void

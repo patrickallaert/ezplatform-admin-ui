@@ -25,7 +25,7 @@ class RichText extends FieldTypeComponent
     public function setValue(array $parameters): void
     {
         $this->getFieldInput();
-        $this->testEnv->getSession()->getDriver()->executeScript(
+        $this->getSession()->getDriver()->executeScript(
             sprintf($this->setAlloyEditorValueScript, $this->richtextId, $parameters['value'])
         );
     }
@@ -59,7 +59,7 @@ class RichText extends FieldTypeComponent
     public function insertNewLine(): void
     {
         $this->getFieldInput();
-        $this->testEnv->getSession()->getDriver()->executeScript(
+        $this->getSession()->getDriver()->executeScript(
             sprintf($this->executeAlloyEditorScript, $this->richtextId, 'enter')
         );
     }
@@ -67,7 +67,7 @@ class RichText extends FieldTypeComponent
     public function insertLine($value, $style = ''): void
     {
         $this->getFieldInput();
-        $this->testEnv->getSession()->getDriver()->executeScript(
+        $this->getSession()->getDriver()->executeScript(
             sprintf($this->insertAlloyEditorValueScript, $this->richtextId, $value)
         );
 

@@ -13,6 +13,8 @@ use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 
 class SubitemsGrid extends Table
 {
+    private $minkParameters;
+
     public function verifyIsLoaded(): void
     {
     }
@@ -49,7 +51,7 @@ class SubitemsGrid extends Table
 
         foreach ($this->getHTMLPage()->findAll($this->getLocator('listElement')) as $element) {
             if ($element->getText() === $name) {
-                return new TableRow($this->testEnv, $element, new LocatorCollection([]));
+                return new TableRow($this->getSession(), $this->minkParameters, $element, new LocatorCollection([]));
             }
         }
 

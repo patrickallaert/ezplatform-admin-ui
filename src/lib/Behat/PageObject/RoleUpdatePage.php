@@ -24,7 +24,7 @@ class RoleUpdatePage extends AdminUpdateItemPage
 
     public function __construct(Session $session, MinkParameters $minkParameters, Router $router, RightMenu $rightMenu, UniversalDiscoveryWidget $universalDiscoveryWidget)
     {
-        parent::__construct($testEnv, $rightMenu);
+        parent::__construct($session, $minkParameters $router, $rightMenu);
         $this->universalDiscoveryWidget = $universalDiscoveryWidget;
     }
 

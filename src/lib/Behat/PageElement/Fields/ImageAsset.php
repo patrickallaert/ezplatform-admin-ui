@@ -44,7 +44,7 @@ class ImageAsset extends Image
         $fieldSelector = $this->getLocator('fieldInput')->withParent($this->parentLocator);
 
         $this->getHTMLPage()->find($fieldSelector)->attachFile(
-            $this->testEnv->getRemoteFileUploadPath($parameters['value'])
+            $this->getRemoteFileUploadPath($parameters['value'])
         );
 
         $this->notification->verifyAlertSuccess();

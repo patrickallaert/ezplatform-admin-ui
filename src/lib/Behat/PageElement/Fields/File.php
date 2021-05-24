@@ -18,7 +18,7 @@ class File extends FieldTypeComponent
     {
         $fieldSelector = $this->getLocator('fieldInput')->withParent($this->parentLocator);
         $this->getHTMLPage()->find($fieldSelector)->attachFile(
-            $this->testEnv->getRemoteFileUploadPath($parameters['value'])
+            $this->getRemoteFileUploadPath($parameters['value'])
         );
     }
 

@@ -48,7 +48,7 @@ class DateAndTimePopup extends Component
      */
     public function setDate(DateTime $date, string $dateFormat = self::DATETIME_FORMAT): void
     {
-        $this->testEnv->getSession()->executeScript(
+        $this->getSession()->executeScript(
             sprintf(
                 self::ADD_CALLBACK_TO_DATEPICKER_SCRIPT_FORMAT,
                 $this->parentLocator->getSelector()
@@ -61,7 +61,7 @@ class DateAndTimePopup extends Component
             $date->format($dateFormat),
             $dateFormat
         );
-        $this->testEnv->getSession()->getDriver()->executeScript($dateScript);
+        $this->getSession()->getDriver()->executeScript($dateScript);
 
         Assert::assertTrue(
             $this->getHTMLPage()
@@ -84,7 +84,7 @@ class DateAndTimePopup extends Component
                 $this->parentLocator->getSelector(),
                 $this->getLocator('flatpickrSelector')->getSelector()
             );
-            $currentDate = $this->testEnv->getSession()->getDriver()->evaluateScript($currentDateScript);
+            $currentDate = $this->getSession()->getDriver()->evaluateScript($currentDateScript);
         }
 
         $valueToSet = $isTimeOnly ? sprintf('%s:%s:00', $hour, $minute) : sprintf('%s, %s:%s:00', explode(',', $currentDate)[0], $hour, $minute);
@@ -98,7 +98,7 @@ class DateAndTimePopup extends Component
             $format
         );
 
-        $this->testEnv->getSession()->getDriver()->executeScript($timeScript);
+        $this->getSession()->getDriver()->executeScript($timeScript);
     }
 
     public function setParentLocator(VisibleCSSLocator $locator)

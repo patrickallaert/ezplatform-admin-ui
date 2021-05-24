@@ -172,7 +172,8 @@ class Table extends Component implements TableInterface
         });
 
         if ($rowElement) {
-            return new TableRow($this->testEnv, $rowElement, new LocatorCollection($filteredCellLocators));
+            // TODO: Factory?
+            return new TableRow($this->getSession(), null, , $rowElement, new LocatorCollection($filteredCellLocators));
         }
 
         throw new \Exception(
@@ -205,7 +206,7 @@ class Table extends Component implements TableInterface
             return $locator->getIdentifier() !== '';
         });
 
-        return new TableRow($this->testEnv, $rowElement, new LocatorCollection($filteredCellLocators));
+        return new TableRow($this->getSession(), null, $rowElement, new LocatorCollection($filteredCellLocators));
     }
 
     public function verifyIsLoaded(): void
