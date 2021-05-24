@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields\FieldTypeComponent;
@@ -27,11 +29,11 @@ class ContentUpdateItemPage extends Page
     private $fieldTypeComponents;
 
     public function __construct(
-        TestEnvironment $testEnv,
+        Session $session, MinkParameters $minkParameters, Router $router,
         RightMenu $rightMenu,
         Traversable $fieldTypeComponents
     ) {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters, $router);
         $this->rightMenu = $rightMenu;
         $this->fieldTypeComponents = iterator_to_array($fieldTypeComponents);
     }

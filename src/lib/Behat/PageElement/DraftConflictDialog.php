@@ -10,7 +10,9 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement;
 
 use EzSystems\Behat\Browser\Component\Component;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
 
 class DraftConflictDialog extends Component
@@ -18,9 +20,9 @@ class DraftConflictDialog extends Component
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table */
     private $table;
 
-    public function __construct(TestEnvironment $testEnv, Table $table)
+    public function __construct(Session $session, MinkParameters $minkParameters, Table $table)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters);
         $this->table = $table->withParentLocator($this->getLocator('table'))->endConfiguration();
     }
 

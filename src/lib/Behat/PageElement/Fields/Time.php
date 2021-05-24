@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\DateAndTimePopup;
 use PHPUnit\Framework\Assert;
@@ -20,9 +22,9 @@ class Time extends FieldTypeComponent
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\DateAndTimePopup */
     private $dateAndTimePopup;
 
-    public function __construct(TestEnvironment $testEnv, DateAndTimePopup $dateAndTimePopup)
+    public function __construct(Session $session, MinkParameters $minkParameters, DateAndTimePopup $dateAndTimePopup)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters);
         $this->dateAndTimePopup = $dateAndTimePopup;
     }
 

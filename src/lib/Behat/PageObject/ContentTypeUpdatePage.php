@@ -11,7 +11,9 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 use EzSystems\Behat\API\ContentData\FieldTypeNameConverter;
 use EzSystems\Behat\Browser\Element\ElementInterface;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Notification;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\RightMenu;
 
@@ -20,9 +22,15 @@ class ContentTypeUpdatePage extends AdminUpdateItemPage
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Notification */
     private $notification;
 
-    public function __construct(TestEnvironment $testEnv, RightMenu $rightMenu, Notification $notification)
+    public function __construct(
+        Session $session,
+        MinkParameters $minkParameters,
+        Router $router,
+        RightMenu $rightMenu,
+        Notification $notification
+    )
     {
-        parent::__construct($testEnv, $rightMenu);
+        parent::__construct($session, $minkParameters, $router, $rightMenu);
         $this->notification = $notification;
     }
 

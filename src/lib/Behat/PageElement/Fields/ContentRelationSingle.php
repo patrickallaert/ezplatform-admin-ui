@@ -9,7 +9,9 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\UniversalDiscoveryWidget;
 use PHPUnit\Framework\Assert;
@@ -32,9 +34,9 @@ class ContentRelationSingle extends FieldTypeComponent
         ];
     }
 
-    public function __construct(TestEnvironment $testEnv, UniversalDiscoveryWidget $universalDiscoveryWidget, Table $table)
+    public function __construct(Session $session, MinkParameters $minkParameters, UniversalDiscoveryWidget $universalDiscoveryWidget, Table $table)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters);
         $this->universalDiscoveryWidget = $universalDiscoveryWidget;
         $this->table = $table;
     }

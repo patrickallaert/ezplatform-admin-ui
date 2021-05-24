@@ -9,7 +9,9 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 
 use eZ\Publish\API\Repository\ContentTypeService;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
@@ -38,12 +40,15 @@ class ContentTypePage extends Page
     private $fieldTable;
 
     public function __construct(
-        TestEnvironment $testEnv,
+        Session $session,
+        MinkParameters $minkParameters,
+        Router $router,
+        RightMenu $rightMenu,
         ContentTypeService $contentTypeService,
         Table $contentTypeDataTable,
         Table $fieldTable)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters, $router);
         $this->contentTypeService = $contentTypeService;
         $this->contentTypeDataTable = $contentTypeDataTable->withParentLocator($this->getLocator('contentTypeDataTable'));
         $this->fieldTable = $fieldTable->withParentLocator($this->getLocator('contentFieldsTable'));

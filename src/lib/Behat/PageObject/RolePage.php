@@ -10,7 +10,9 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 
 use eZ\Publish\API\Repository\Repository;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Dialog;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
@@ -40,14 +42,14 @@ class RolePage extends Page
     private $assignments;
 
     public function __construct(
-        TestEnvironment $testEnv,
+        Session $session, MinkParameters $minkParameters, Router $router,
         TableNavigationTab $tableNavigationTab,
         Dialog $dialog,
         Repository $repository,
         Table $policies,
         Table $assignments
     ) {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters, $router);
         $this->tableNavigationTab = $tableNavigationTab;
         $this->dialog = $dialog;
         $this->repository = $repository;

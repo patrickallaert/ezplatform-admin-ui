@@ -9,7 +9,9 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 
 use eZ\Publish\API\Repository\Repository;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Dialog;
@@ -33,9 +35,9 @@ class LanguagePage extends Page
     /** @var \eZ\Publish\API\Repository\Repository */
     private $repository;
 
-    public function __construct(TestEnvironment $testEnv, Table $table, Dialog $dialog, Repository $repository)
+    public function __construct(Session $session, MinkParameters $minkParameters, Router $router, Table $table, Dialog $dialog, Repository $repository)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters, $router);
         $this->table = $table;
         $this->dialog = $dialog;
         $this->repository = $repository;

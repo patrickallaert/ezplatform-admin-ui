@@ -12,7 +12,9 @@ use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\URLAlias;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\Behat\Core\Behat\ArgumentParser;
@@ -80,7 +82,7 @@ class ContentViewPage extends Page
     private $argumentParser;
 
     public function __construct(
-        TestEnvironment $testEnv,
+        Session $session, MinkParameters $minkParameters, Router $router,
         RightMenu $rightMenu,
         SubItemsList $subItemList,
         ContentTypePicker $contentTypePicker,
@@ -94,7 +96,7 @@ class ContentViewPage extends Page
         UpperMenu $upperMenu,
         ArgumentParser $argumentParser
     ) {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters, $router);
 
         $this->rightMenu = $rightMenu;
         $this->subItemList = $subItemList;

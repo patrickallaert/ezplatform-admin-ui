@@ -8,14 +8,15 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use EzSystems\Behat\Browser\Element\ElementInterface;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use PHPUnit\Framework\Assert;
 
 class User extends FieldTypeComponent
 {
-    public function __construct(TestEnvironment $testEnv)
+    public function __construct(Session $session, MinkParameters $minkParameters)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters);
     }
 
     protected function specifyLocators(): array

@@ -10,7 +10,8 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement;
 
 use EzSystems\Behat\Browser\Component\Component;
 use EzSystems\Behat\Browser\Locator\CSSLocator;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Traversable;
 
@@ -19,9 +20,9 @@ class ContentItemAdminPreview extends Component
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields\FieldTypeComponentInterface[] */
     private $fieldTypeComponents;
 
-    public function __construct(TestEnvironment $testEnv, Traversable $fieldTypeComponents)
+    public function __construct(Session $session, MinkParameters $minkParameters, Traversable $fieldTypeComponents)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters);
         $this->fieldTypeComponents = iterator_to_array($fieldTypeComponents);
     }
 

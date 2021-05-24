@@ -13,7 +13,9 @@ use EzSystems\Behat\Browser\Element\ElementInterface;
 use EzSystems\Behat\Browser\Locator\CSSLocator;
 use EzSystems\Behat\Browser\Locator\LocatorCollection;
 use EzSystems\Behat\Browser\Locator\LocatorInterface;
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Pagination;
 use PHPUnit\Framework\Assert;
 
@@ -33,9 +35,9 @@ class Table extends Component implements TableInterface
     /** @var \EzSystems\Behat\Browser\Locator\VisibleCSSLocator */
     private $parentLocator;
 
-    public function __construct(TestEnvironment $testEnv, Pagination $pagination)
+    public function __construct(Session $session, MinkParameters $minkParameters, Pagination $pagination)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters);
         $this->pagination = $pagination;
         $this->parentLocatorChanged = true;
         $this->parentLocator = $this->getLocator('parent');

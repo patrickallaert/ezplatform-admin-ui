@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
@@ -18,9 +20,9 @@ class DashboardPage extends Page
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table */
     protected $table;
 
-    public function __construct(TestEnvironment $testEnv, Table $table)
+    public function __construct(Session $session, MinkParameters $minkParameters, Router $router, Table $table)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters, $router);
         $this->table = $table->withParentLocator($this->getLocator('table'));
     }
 

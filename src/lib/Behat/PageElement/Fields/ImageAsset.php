@@ -8,7 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
-use EzSystems\Behat\Browser\Page\TestEnvironment;
+use Behat\Mink\Session;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess\Router;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Notification;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\UniversalDiscoveryWidget;
@@ -22,9 +24,9 @@ class ImageAsset extends Image
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Notification */
     private $notification;
 
-    public function __construct(TestEnvironment $testEnv, UniversalDiscoveryWidget $universalDiscoveryWidget, Notification $notification)
+    public function __construct(Session $session, MinkParameters $minkParameters, UniversalDiscoveryWidget $universalDiscoveryWidget, Notification $notification)
     {
-        parent::__construct($testEnv);
+        parent::__construct($session, $minkParameters);
         $this->universalDiscoveryWidget = $universalDiscoveryWidget;
         $this->notification = $notification;
     }
