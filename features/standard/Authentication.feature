@@ -1,7 +1,7 @@
 @IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce
 Feature: Verify that Admin Panel is available only for authenticated users
 
-  @javascript
+  @javascript @test
   Scenario: Should be redirected to Dashboard after successful login
     Given I open Login page in admin SiteAccess
     When I log in as admin with password publish

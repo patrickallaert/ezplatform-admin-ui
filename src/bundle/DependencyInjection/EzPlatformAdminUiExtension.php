@@ -148,7 +148,7 @@ class EzPlatformAdminUiExtension extends Extension implements PrependExtensionIn
 
     private function shouldLoadBehatServices(ContainerBuilder $container): bool
     {
-        return $container->hasParameter('ezplatform.behat.enabled')
-            && $container->getParameter('ezplatform.behat.enabled') === true;
+        return $container->hasParameter('ibexa.testing.behat.enabled')
+            && $container->getParameter('ibexa.testing.behat.enabled') === true;
     }
 }

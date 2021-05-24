@@ -16,7 +16,7 @@ use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
 class DashboardPage extends Page
 {
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table */
-    private $table;
+    protected $table;
 
     public function __construct(TestEnvironment $testEnv, Table $table)
     {

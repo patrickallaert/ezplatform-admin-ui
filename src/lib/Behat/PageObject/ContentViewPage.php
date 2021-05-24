@@ -156,8 +156,7 @@ class ContentViewPage extends Page
 
     public function setExpectedLocationPath(string $locationPath)
     {
-        $this->locationPath = $this->argumentParser->parseUrl($locationPath);
-        [$this->expectedContentType, $this->expectedContentName, $contentId, $contentMainLocationId, $isContainer] = $this->getContentData($locationPath);
+        [$this->expectedContentType, $this->expectedContentName, $contentId, $contentMainLocationId, $isContainer] = $this->getContentData($this->argumentParser->parseUrl($locationPath));
         $this->route = sprintf('/view/content/%s/full/1/%s', $contentId, $contentMainLocationId);
         $this->expectedIsContainer = $isContainer;
         $this->locationPath = $locationPath;

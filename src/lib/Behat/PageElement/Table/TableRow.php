@@ -11,6 +11,7 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Table;
 use EzSystems\Behat\Browser\Component\Component;
 use EzSystems\Behat\Browser\Element\ElementInterface;
 use EzSystems\Behat\Browser\Locator\LocatorCollection;
+use EzSystems\Behat\Browser\Locator\LocatorInterface;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\Behat\Browser\Page\TestEnvironment;
 
@@ -56,6 +57,11 @@ class TableRow extends Component
 
     public function verifyIsLoaded(): void
     {
+    }
+
+    public function click(LocatorInterface $locator)
+    {
+        return $this->element->find($locator)->click();
     }
 
     public function canBeSelected(): bool

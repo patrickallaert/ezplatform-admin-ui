@@ -33,9 +33,6 @@ class DateAndTimePopup extends Component
                 fi._flatpickr.config.onChange = onChangeNew;
             }';
 
-    /** @var bool */
-    private $isInline;
-
     /** @var \EzSystems\Behat\Browser\Locator\VisibleCSSLocator */
     private $parentLocator;
 
@@ -103,14 +100,9 @@ class DateAndTimePopup extends Component
         $this->testEnv->getSession()->getDriver()->executeScript($timeScript);
     }
 
-    public function shouldBeInline(bool $isLine): void
+    public function setParentLocator(VisibleCSSLocator $locator)
     {
-        $this->isInline = $isLine;
-    }
-
-    public function setParentSelector(VisibleCSSLocator $selector)
-    {
-        $this->parentLocator = $selector;
+        $this->parentLocator = $locator;
     }
 
     public function verifyIsLoaded(): void

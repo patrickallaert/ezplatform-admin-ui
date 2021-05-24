@@ -12,7 +12,6 @@ use EzSystems\Behat\Browser\Component\Component;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
 
-/** Element that describes user notification bar, that appears on the bottom of the screen */
 class Notification extends Component
 {
     public function verifyAlertSuccess(): void

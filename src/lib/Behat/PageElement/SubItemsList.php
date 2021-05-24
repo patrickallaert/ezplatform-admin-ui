@@ -61,6 +61,9 @@ class SubItemsList extends Component
     public function verifyIsLoaded(): void
     {
         Assert::assertTrue($this->getHTMLPage()->find($this->getLocator('table'))->isVisible());
+        $this->getHTMLPage()->setTimeout(5)->waitUntil(function() {
+            return $this->getHTMLPage()->findAll($this->getLocator('spinner'))->any() === false;
+        });
     }
 
     public function clickListElement(string $contentName, string $contentType)
@@ -88,6 +91,7 @@ class SubItemsList extends Component
         return [
             new VisibleCSSLocator('table', '.m-sub-items'),
             new VisibleCSSLocator('horizontalHeaders', '.m-sub-items .c-table-view__cell--head'),
+            new VisibleCSSLocator('spinner', '.m-sub-items__spinner-wrapper'),
             new CSSLocator('sortingOrderAscending', '.m-sub-items .c-table-view__cell--head.c-table-view__cell--sorted-asc'),
             new CSSLocator('sortingOrderDescending', '.m-sub-items .c-table-view__cell--head.c-table-view__cell--sorted-desc'),
         ];

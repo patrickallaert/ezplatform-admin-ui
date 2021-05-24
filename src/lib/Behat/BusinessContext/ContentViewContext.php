@@ -102,16 +102,6 @@ class ContentViewContext implements Context
     }
 
     /**
-     * @Given I should be viewing Content Item :contentName in :path
-     */
-    public function verifyImOnContentItemPage(string $contentName, ?string $path = null)
-    {
-        $path = $this->argumentParser->replaceRootKeyword($path);
-        $this->contentViewPage->setExpectedLocationPath(sprintf('%s/%s', $path, $contentName));
-        $this->contentViewPage->verifyIsLoaded();
-    }
-
-    /**
      * @Then content attributes equal
      */
     public function contentAttributesEqual(TableNode $parameters): void

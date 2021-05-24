@@ -56,7 +56,6 @@ Feature: Verify that an Editor with Subtree limitations can perform all his task
     Then success notification that "'ContentToMove' moved to 'FolderParent'" appears
     And I should be on Content view Page for "root/FolderGrandParent/FolderParent/ContentToMove"
 
-    @test
   Scenario Outline: I cannot edit, create or send to trash Content outside my permissions
     When I open UDW and go to "<contentPath>"
     Then the buttons are disabled
