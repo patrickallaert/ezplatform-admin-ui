@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement;
 use EzSystems\Behat\Browser\Component\Component;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
-use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
 

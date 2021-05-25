@@ -14,7 +14,6 @@ use EzSystems\Behat\Browser\Locator\LocatorCollection;
 use EzSystems\Behat\Browser\Locator\LocatorInterface;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
-use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 
 class TableRow extends Component

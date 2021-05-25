@@ -44,4 +44,6 @@ services:
   EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table:
     shared: false
 
+  EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\TableFactory: ~
+
   EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\SubitemsGrid: ~

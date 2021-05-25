@@ -11,6 +11,7 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 use EzSystems\Behat\Browser\Element\ElementInterface;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
+use EzSystems\Behat\Browser\Locator\CSSLocatorBuilder;
 use Exception;
 
 class RichText extends FieldTypeComponent
@@ -76,7 +77,8 @@ class RichText extends FieldTypeComponent
         }
 
         $this->changeStyle($style);
-        $selector = $this->getLocator('fieldInput')->withDescendant(new VisibleCSSLocator('style', $style));
+
+        $selector = CSSLocatorBuilder::base($this->getLocator('fieldInput'))->withDescendant(new VisibleCSSLocator('style', $style))->build();
 
         Assert::assertContains(
             sprintf('%s%s</%s>', $value, '<br>', $style),

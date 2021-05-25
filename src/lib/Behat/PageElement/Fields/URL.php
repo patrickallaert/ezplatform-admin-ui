@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
 
@@ -19,9 +20,11 @@ class URL extends FieldTypeComponent
         $this->setSpecificFieldValue('text', $parameters['text']);
     }
 
-    public function setSpecificFieldValue(string $coordinateName, string $value): void
+    public function setSpecificFieldValue(string $fieldName, string $value): void
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator($coordinateName));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator($fieldName))
+            ->build();
 
         $this->getHTMLPage()->find($fieldSelector)->setValue($value);
     }
@@ -34,9 +37,11 @@ class URL extends FieldTypeComponent
             ];
     }
 
-    public function getSpecificFieldValue(string $coordinateName): string
+    public function getSpecificFieldValue(string $fieldName): string
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator($coordinateName));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator($fieldName))
+            ->build();
 
         return $this->getHTMLPage()->find($fieldSelector)->getValue();
     }
@@ -63,7 +68,9 @@ class URL extends FieldTypeComponent
             'Field has wrong value'
         );
 
-        $urlSelector = $this->parentLocator->withDescendant(new VisibleCSSLocator('', 'a'));
+        $urlSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant(new VisibleCSSLocator('', 'a'))
+            ->build();
 
         Assert::assertEquals(
             $values['url'],

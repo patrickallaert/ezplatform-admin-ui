@@ -7,6 +7,7 @@
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use EzSystems\Behat\Browser\Element\ElementInterface;
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
@@ -48,7 +49,10 @@ class User extends FieldTypeComponent
 
     private function setEnabledField(bool $enabled)
     {
-        $fieldLocator = $this->parentLocator->withDescendant($this->getLocator('buttonEnabled'));
+        $fieldLocator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('buttonEnabled'))
+            ->build();
+
         $field = $this->getHTMLPage()->find($fieldLocator);
         $isCurrentlyEnabled = $field->hasClass('is-checked');
         if ($isCurrentlyEnabled !== $enabled) {
@@ -58,7 +62,10 @@ class User extends FieldTypeComponent
 
     public function setSpecificFieldValue(string $fieldName, string $value): void
     {
-        $fieldLocator = $this->parentLocator->withDescendant($this->getLocator($fieldName));
+        $fieldLocator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator($fieldName))
+            ->build();
+
         $this->getHTMLPage()->find($fieldLocator)->setValue($value);
     }
 
@@ -72,7 +79,9 @@ class User extends FieldTypeComponent
 
     public function getSpecificFieldValue(string $fieldName): string
     {
-        $fieldLocator = $this->parentLocator->withDescendant($this->getLocator($fieldName));
+        $fieldLocator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator($fieldName))
+            ->build();
 
         return $this->getHTMLPage()->find($fieldLocator)->getValue();
     }
@@ -93,8 +102,12 @@ class User extends FieldTypeComponent
 
     public function verifyValueInItemView(array $values): void
     {
+        $locator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant(new VisibleCSSLocator('userViewField', 'tr td:nth-of-type(2)'))
+            ->build();
+
         [$actualUsername, $actualEmail, $actualEnabled] = $this->getHTMLPage()
-            ->findAll($this->parentLocator->withDescendant(new VisibleCSSLocator('userViewField', 'tr td:nth-of-type(2)')))
+            ->findAll($locator)
             ->map(function (ElementInterface $element) {
                 return $element->getText();
             });

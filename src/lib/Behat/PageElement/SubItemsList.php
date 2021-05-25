@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement;
 use EzSystems\Behat\Browser\Component\Component;
 use EzSystems\Behat\Browser\Locator\CSSLocator;
 use Behat\Mink\Session;
-use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\SubitemsGrid;
@@ -63,7 +62,7 @@ class SubItemsList extends Component
     public function verifyIsLoaded(): void
     {
         Assert::assertTrue($this->getHTMLPage()->find($this->getLocator('table'))->isVisible());
-        $this->getHTMLPage()->setTimeout(5)->waitUntil(function() {
+        $this->getHTMLPage()->setTimeout(5)->waitUntil(function () {
             return $this->getHTMLPage()->findAll($this->getLocator('spinner'))->any() === false;
         });
     }

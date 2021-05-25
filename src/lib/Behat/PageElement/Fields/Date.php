@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use Behat\Mink\Session;
-use EzSystems\Behat\Browser\Routing\Router;
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\DateAndTimePopup;
@@ -30,7 +30,9 @@ class Date extends FieldTypeComponent
 
     public function setValue(array $parameters): void
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator('fieldInput'));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('fieldInput'))
+            ->build();
 
         $this->getHTMLPage()->find($fieldSelector)->click();
         $this->dateAndTimePopup->setDate(date_create($parameters['value']), self::DATE_FORMAT);
@@ -38,7 +40,10 @@ class Date extends FieldTypeComponent
 
     public function getValue(): array
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator('fieldInput'));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('fieldInput'))
+            ->build();
+
         $value = $this->getHTMLPage()->find($fieldSelector)->getText();
 
         return [$value];

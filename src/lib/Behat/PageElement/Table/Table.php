@@ -35,12 +35,20 @@ class Table extends Component implements TableInterface
     /** @var \EzSystems\Behat\Browser\Locator\VisibleCSSLocator */
     private $parentLocator;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, Pagination $pagination)
+    /** @var TableFactory */
+    protected $tableFactory;
+
+    public function __construct(
+        Session $session,
+        MinkParameters $minkParameters,
+        TableFactory $tableFactory,
+        Pagination $pagination)
     {
         parent::__construct($session, $minkParameters);
         $this->pagination = $pagination;
         $this->parentLocatorChanged = true;
         $this->parentLocator = $this->getLocator('parent');
+        $this->tableFactory = $tableFactory;
     }
 
     public function isEmpty(): bool
@@ -172,8 +180,7 @@ class Table extends Component implements TableInterface
         });
 
         if ($rowElement) {
-            // TODO: Factory?
-            return new TableRow($this->getSession(), null, , $rowElement, new LocatorCollection($filteredCellLocators));
+            return $this->tableFactory->createRow($rowElement, new LocatorCollection($filteredCellLocators));
         }
 
         throw new \Exception(
@@ -206,7 +213,7 @@ class Table extends Component implements TableInterface
             return $locator->getIdentifier() !== '';
         });
 
-        return new TableRow($this->getSession(), null, $rowElement, new LocatorCollection($filteredCellLocators));
+        return $this->tableFactory->createRow($rowElement, new LocatorCollection($filteredCellLocators));
     }
 
     public function verifyIsLoaded(): void

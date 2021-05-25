@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
 
@@ -15,7 +16,10 @@ class Checkbox extends FieldTypeComponent
 {
     public function setValue(array $parameters): void
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator('fieldInput'));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('fieldInput'))
+            ->build();
+
         $newValue = ($parameters['value'] === 'true');
 
         if ($this->getValue() !== $newValue) {
@@ -25,7 +29,9 @@ class Checkbox extends FieldTypeComponent
 
     public function getValue(): array
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator('fieldInput'));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('fieldInput'))
+            ->build();
 
         return [
             $this->getHTMLPage()->find($fieldSelector)->hasClass($this->getLocator('checked')->getSelector()),

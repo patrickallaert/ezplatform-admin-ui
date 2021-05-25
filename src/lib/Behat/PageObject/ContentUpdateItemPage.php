@@ -29,7 +29,9 @@ class ContentUpdateItemPage extends Page
     private $fieldTypeComponents;
 
     public function __construct(
-        Session $session, MinkParameters $minkParameters, Router $router,
+        Session $session, 
+        MinkParameters $minkParameters, 
+        Router $router,
         RightMenu $rightMenu,
         Traversable $fieldTypeComponents
     ) {

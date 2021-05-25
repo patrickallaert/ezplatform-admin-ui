@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use EzSystems\Behat\Browser\Element\ElementInterface;
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\Behat\Browser\Locator\LocatorInterface;
 use PHPUnit\Framework\Assert;
@@ -75,7 +76,7 @@ class Matrix extends FieldTypeComponent
 
     private function internalSetValue(int $rowIndex, string $column, $value): void
     {
-        $matrixCellSelector = VisibleCSSLocator::combine(
+        $matrixCellSelector = CssLocatorBuilder::combine(
             $this->getLocator('matrixCellSelectorFormat')->getSelector(),
             new VisibleCSSLocator('rowIndex', (string)$rowIndex),
             new VisibleCSSLocator('columnIndex', $column),

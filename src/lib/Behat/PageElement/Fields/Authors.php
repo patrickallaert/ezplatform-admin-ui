@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
 
@@ -18,8 +19,8 @@ class Authors extends FieldTypeComponent
         $name = $parameters['name'];
         $email = $parameters['email'];
 
-        $nameSelector = $this->parentLocator->withDescendant($this->getLocator('nameFieldInput'));
-        $emailSelector = $this->parentLocator->withDescendant($this->getLocator('emailFieldInput'));
+        $nameSelector = CSSLocatorBuilder::base($this->parentLocator)->withDescendant($this->getLocator('nameFieldInput'))->build();
+        $emailSelector = CSSLocatorBuilder::base($this->parentLocator)->withDescendant($this->getLocator('emailFieldInput'))->build();
 
         $this->getHTMLPage()->find($nameSelector)->setValue($name);
         $this->getHTMLPage()->find($emailSelector)->setValue($email);
@@ -27,8 +28,8 @@ class Authors extends FieldTypeComponent
 
     public function getValue(): array
     {
-        $nameSelector = $this->parentLocator->withDescendant($this->getLocator('nameFieldInput'));
-        $emailSelector = $this->parentLocator->withDescendant($this->getLocator('emailFieldInput'));
+        $nameSelector = CSSLocatorBuilder::base($this->parentLocator)->withDescendant($this->getLocator('nameFieldInput'))->build();
+        $emailSelector = CSSLocatorBuilder::base($this->parentLocator)->withDescendant($this->getLocator('emailFieldInput'))->build();
 
         return [
             'name' => $this->getHTMLPage()->find($nameSelector)->getValue(),

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use EzSystems\Behat\Browser\Element\ElementInterface;
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
 
@@ -27,7 +28,9 @@ class ContentQuery extends NonEditableField
 
     private function getValueInItemView(): array
     {
-        $itemSelector = $this->parentLocator->withDescendant($this->getLocator('queryResultItem'));
+        $itemSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('queryResultItem'))
+            ->build();
 
         return $this->getHTMLPage()->findAll($itemSelector)->map(function (ElementInterface $element) {
             return $element->getText();

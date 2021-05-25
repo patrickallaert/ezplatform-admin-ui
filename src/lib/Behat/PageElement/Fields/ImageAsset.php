@@ -9,7 +9,8 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use Behat\Mink\Session;
-use EzSystems\Behat\Browser\Routing\Router;
+use EzSystems\Behat\Browser\FileUpload\FileUploadHelper;
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Notification;
@@ -24,11 +25,21 @@ class ImageAsset extends Image
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Notification */
     private $notification;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, UniversalDiscoveryWidget $universalDiscoveryWidget, Notification $notification)
+    /** @var \EzSystems\Behat\Browser\FileUpload\FileUploadHelper */
+    private $fileUploadHelper;
+
+    public function __construct(
+        Session $session,
+        MinkParameters $minkParameters,
+        FileUploadHelper $fileUploadHelper,
+        UniversalDiscoveryWidget $universalDiscoveryWidget,
+        Notification $notification
+    )
     {
-        parent::__construct($session, $minkParameters);
+        parent::__construct($session, $minkParameters, $fileUploadHelper);
         $this->universalDiscoveryWidget = $universalDiscoveryWidget;
         $this->notification = $notification;
+        $this->fileUploadHelper = $fileUploadHelper;
     }
 
     private const IMAGE_ASSET_NOTIFICATION_MESSAGE = 'The image has been published and can now be reused';
@@ -41,10 +52,12 @@ class ImageAsset extends Image
             $this->notification->closeAlert();
         }
 
-        $fieldSelector = $this->getLocator('fieldInput')->withParent($this->parentLocator);
+        $fieldSelector = CSSLocatorBuilder::base($this->getLocator('fieldInput'))
+            ->withParent($this->parentLocator)
+            ->build();
 
         $this->getHTMLPage()->find($fieldSelector)->attachFile(
-            $this->getRemoteFileUploadPath($parameters['value'])
+            $this->fileUploadHelper->getRemoteFileUploadPath($parameters['value'])
         );
 
         $this->notification->verifyAlertSuccess();
@@ -53,8 +66,12 @@ class ImageAsset extends Image
 
     public function selectFromRepository(string $path): void
     {
+        $selectFromRepoLocator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('selectFromRepoButton'))
+            ->build();
+
         $this->getHTMLPage()
-            ->find($this->parentLocator->withDescendant($this->getLocator('selectFromRepoButton')))
+            ->find($selectFromRepoLocator)
             ->click();
         $this->universalDiscoveryWidget->verifyIsLoaded();
         $this->universalDiscoveryWidget->selectContent($path);

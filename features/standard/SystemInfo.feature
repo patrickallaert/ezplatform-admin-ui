@@ -1,4 +1,4 @@
-@systemInformation @IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce
+@systemInformation @IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce @passing
 Feature: System info verification
   As an administrator
   In order to customize my website

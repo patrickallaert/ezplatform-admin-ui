@@ -1,4 +1,4 @@
-@IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce
+@IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce @passing
 Feature: Searching for a Content item
   As an administrator
   I want to search for Content items.

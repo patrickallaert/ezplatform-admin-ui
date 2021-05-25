@@ -51,7 +51,7 @@ class SubitemsGrid extends Table
 
         foreach ($this->getHTMLPage()->findAll($this->getLocator('listElement')) as $element) {
             if ($element->getText() === $name) {
-                return new TableRow($this->getSession(), $this->minkParameters, $element, new LocatorCollection([]));
+                return $this->tableFactory->createRow($element, new LocatorCollection([]));
             }
         }
 

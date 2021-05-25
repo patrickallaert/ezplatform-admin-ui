@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 
 class Selection extends FieldTypeComponent
@@ -16,15 +17,19 @@ class Selection extends FieldTypeComponent
     {
         $value = $parameters['value'];
 
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator('selectBar'));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('selectBar'))
+            ->build();
+
         $this->getHTMLPage()->find($fieldSelector)->click();
         $this->getHTMLPage()->findAll($this->getLocator('selectOption'))->getByText($value)->click();
     }
 
     public function getValue(): array
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator('selectBar'));
-
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('selectBar'))
+            ->build();
         return [$this->getHTMLPage()->find($fieldSelector)->getValue()];
     }
 

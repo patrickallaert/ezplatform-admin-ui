@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use EzSystems\Behat\Browser\Component\Component;
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
 
@@ -19,7 +20,9 @@ abstract class FieldTypeComponent extends Component implements FieldTypeComponen
 
     public function setValue(array $parameters): void
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator('fieldInput'));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('fieldInput'))
+            ->build();
 
         $value = $parameters['value'];
         $this->getHTMLPage()->find($fieldSelector)->setValue($value);
@@ -27,7 +30,10 @@ abstract class FieldTypeComponent extends Component implements FieldTypeComponen
 
     public function getValue(): array
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator('fieldInput'));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('fieldInput'))
+            ->build();
+
         $value = $this->getHTMLPage()->find($fieldSelector)->getValue();
 
         return [$value];

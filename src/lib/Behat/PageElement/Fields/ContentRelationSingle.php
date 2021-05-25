@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
-use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\UniversalDiscoveryWidget;
@@ -48,7 +48,11 @@ class ContentRelationSingle extends FieldTypeComponent
             if (!$this->table->hasElement(['Name' => $itemName])) {
                 $this->table->getTableRowByIndex(0)->select();
                 $this->getHTMLPage()
-                    ->find($this->parentLocator->withDescendant($this->getLocator('buttonRemove')))
+                    ->find(
+                        CSSLocatorBuilder::base($this->parentLocator)
+                            ->withDescendant($this->getLocator('buttonRemove'))
+                            ->build()
+                    )
                     ->click();
             } else {
                 return;
@@ -56,7 +60,11 @@ class ContentRelationSingle extends FieldTypeComponent
         }
 
         $this->getHTMLPage()
-            ->find($this->parentLocator->withDescendant($this->getLocator('selectContent')))
+            ->find(
+                CSSLocatorBuilder::base($this->parentLocator)
+                    ->withDescendant($this->getLocator('selectContent'))
+                    ->build()
+            )
             ->click();
 
         $this->universalDiscoveryWidget->selectContent($parameters['value']);
@@ -95,9 +103,11 @@ class ContentRelationSingle extends FieldTypeComponent
 
     public function isRelationEmpty(): bool
     {
-        $selectSelector = $this->parentLocator->withDescendant($this->getLocator('selectContent'));
+        $selectLocator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('selectContent'))
+            ->build();
 
-        return $this->getHTMLPage()->findAll($selectSelector)->any();
+        return $this->getHTMLPage()->findAll($selectLocator)->any();
     }
 
     public function getFieldTypeIdentifier(): string

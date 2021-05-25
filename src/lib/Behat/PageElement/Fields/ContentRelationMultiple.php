@@ -8,9 +8,9 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
-use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\UniversalDiscoveryWidget;
@@ -69,8 +69,12 @@ class ContentRelationMultiple extends FieldTypeComponent
             }
         }
 
+        $removeRelationsLocator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('removeRelations'))
+            ->build();
+
         $this->getHTMLPage()
-            ->find($this->parentLocator->withDescendant($this->getLocator('removeRelations')))
+            ->find($removeRelationsLocator)
             ->click();
 
         return $wantedRelations;
@@ -79,11 +83,16 @@ class ContentRelationMultiple extends FieldTypeComponent
     private function startAddingRelations()
     {
         if ($this->isRelationEmpty()) {
-            $selectSelector = $this->parentLocator->withDescendant($this->getLocator('selectContent'));
-            $this->getHTMLPage()->find($selectSelector)->click();
+            $selectLocator = CSSLocatorBuilder::base($this->parentLocator)
+                ->withDescendant($this->getLocator('selectContent'))
+                ->build();
+            $this->getHTMLPage()->find($selectLocator)->click();
         } else {
+            $addRelationLocator = CSSLocatorBuilder::base($this->parentLocator)
+                ->withDescendant($this->getLocator('addRelation'))
+                ->build();
             $this->getHTMLPage()
-                ->find($this->parentLocator->withDescendant($this->getLocator('addRelation')))
+                ->find($addRelationLocator)
                 ->click();
         }
     }
@@ -99,10 +108,12 @@ class ContentRelationMultiple extends FieldTypeComponent
 
     public function getValue(): array
     {
-        $selectSelector = $this->parentLocator->withDescendant($this->getLocator('selectContent'));
+        $selectLocator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('selectContent'))
+            ->build();
 
         return [
-            $this->getHTMLPage()->find($selectSelector)->getText(),
+            $this->getHTMLPage()->find($selectLocator)->getText(),
         ];
     }
 
@@ -128,9 +139,11 @@ class ContentRelationMultiple extends FieldTypeComponent
 
     public function isRelationEmpty(): bool
     {
-        $selectSelector = $this->parentLocator->withDescendant($this->getLocator('selectContent'));
+        $selectLocator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('selectContent'))
+            ->build();
 
-        return $this->getHTMLPage()->findAll($selectSelector)->any();
+        return $this->getHTMLPage()->findAll($selectLocator)->any();
     }
 
     public function specifyLocators(): array

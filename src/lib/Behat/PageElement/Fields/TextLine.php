@@ -9,12 +9,15 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
+use EzSystems\Behat\Browser\Locator\CSSLocatorBuilder;
 
 class TextLine extends FieldTypeComponent
 {
     public function setValue(array $parameters): void
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator('fieldInput'));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('fieldInput'))
+            ->build();
 
         $value = array_values($parameters)[0];
         $this->getHTMLPage()->find($fieldSelector)->setValue($value);

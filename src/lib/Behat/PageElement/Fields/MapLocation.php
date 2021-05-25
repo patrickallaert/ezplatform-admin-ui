@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
 
@@ -37,7 +38,9 @@ class MapLocation extends FieldTypeComponent
 
     private function setSpecificCoordinate(string $coordinateName, string $value): void
     {
-        $fieldSelector = $this->parentLocator->withDescendant($this->getLocator($coordinateName));
+        $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator($coordinateName))
+            ->build();
         $this->getHTMLPage()->find($fieldSelector)->setValue($value);
     }
 
@@ -52,7 +55,9 @@ class MapLocation extends FieldTypeComponent
 
     public function getSpecificCoordinate(string $coordinateName): string
     {
-        $coordinateSelector = $this->parentLocator->withDescendant($this->getLocator($coordinateName));
+        $coordinateSelector = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator($coordinateName))
+            ->build();
 
         return $this->getHTMLPage()->find($coordinateSelector)->getValue();
     }

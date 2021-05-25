@@ -11,13 +11,9 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 use Behat\Mink\Session;
 use eZ\Publish\API\Repository\ContentTypeService;
 use EzSystems\Behat\Browser\Routing\Router;
-use Behat\Mink\Session;
-use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Dialog;
-use EzSystems\EzPlatformAdminUi\Behat\PageElement\RightMenu;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 

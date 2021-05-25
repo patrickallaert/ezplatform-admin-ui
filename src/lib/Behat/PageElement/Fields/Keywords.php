@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use EzSystems\Behat\Browser\Element\ElementInterface;
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
 
@@ -46,8 +47,12 @@ SCRIPT;
     {
         $expectedValues = $this->parseValueString($values['value']);
 
+        $keywordItemLocator = CSSLocatorBuilder::base($this->parentLocator)
+            ->withDescendant($this->getLocator('keywordItem'))
+            ->build();
+
         $actualValues = $this->getHTMLPage()
-            ->findAll($this->parentLocator->withDescendant($this->getLocator('keywordItem')))
+            ->findAll($keywordItemLocator)
             ->map(static function (ElementInterface $element) {
                 return $element->getText();
             });

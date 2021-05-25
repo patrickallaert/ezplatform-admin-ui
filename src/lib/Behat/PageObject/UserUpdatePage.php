@@ -17,7 +17,7 @@ class UserUpdatePage extends ContentUpdateItemPage
 {
     public function __construct(Session $session, MinkParameters $minkParameters, Router $router, RightMenu $rightMenu, Traversable $fieldTypeComponents)
     {
-        parent::__construct($session, $minkParameters, $rightMenu, $fieldTypeComponents);
+        parent::__construct($session, $minkParameters, $router, $rightMenu, $fieldTypeComponents);
         $this->locators->replace(
             new VisibleCSSLocator(
                 'formElement',

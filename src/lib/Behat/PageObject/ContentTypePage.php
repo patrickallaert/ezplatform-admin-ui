@@ -43,7 +43,6 @@ class ContentTypePage extends Page
         Session $session,
         MinkParameters $minkParameters,
         Router $router,
-        RightMenu $rightMenu,
         ContentTypeService $contentTypeService,
         Table $contentTypeDataTable,
         Table $fieldTable)

@@ -10,6 +10,7 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement;
 
 use EzSystems\Behat\Browser\Component\Component;
 use EzSystems\Behat\Browser\Locator\CSSLocator;
+use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use Behat\Mink\Session;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
@@ -31,7 +32,7 @@ class ContentItemAdminPreview extends Component
         $fieldPosition = $this->getFieldPosition($fieldLabel);
         $nthFieldLocator = new VisibleCSSLocator('', sprintf($this->getLocator('nthFieldContainer')->getSelector(), $fieldPosition));
 
-        $fieldValueLocator = $nthFieldLocator->withDescendant($this->getLocator('fieldValue'));
+        $fieldValueLocator = CSSLocatorBuilder::base($nthFieldLocator)->withDescendant($this->getLocator('fieldValue'))->build();
         $fieldTypeIdentifier = $fieldTypeIdentifier ?? $this->detectFieldTypeIdentifier($fieldValueLocator);
 
         foreach ($this->fieldTypeComponents as $fieldTypeComponent) {
@@ -77,9 +78,8 @@ class ContentItemAdminPreview extends Component
     private function detectFieldTypeIdentifier(CSSLocator $fieldValueLocator)
     {
         $fieldClass = $this->getHTMLPage()
-            ->find($fieldValueLocator->withDescendant($this->getLocator('fieldValueContainer')))
+            ->find(CSSLocatorBuilder::base($fieldValueLocator)->withDescendant($this->getLocator('fieldValueContainer'))->build())
             ->getAttribute('class');
-
 
         if ($fieldClass === 'ez-scrollable-table-wrapper mb-0') {
             return 'ezuser';
