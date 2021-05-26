@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement;
 use EzSystems\Behat\Browser\Component\Component;
 use EzSystems\Behat\Browser\Locator\CSSLocator;
 use Behat\Mink\Session;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\SubitemsGrid;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
@@ -28,9 +27,9 @@ class SubItemsList extends Component
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\SubitemsGrid */
     private $grid;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, Table $table, SubitemsGrid $grid)
+    public function __construct(Session $session, Table $table, SubitemsGrid $grid)
     {
-        parent::__construct($session, $minkParameters);
+        parent::__construct($session);
         $this->table = $table->withParentLocator($this->getLocator('table'))->endConfiguration();
         $this->grid = $grid;
     }

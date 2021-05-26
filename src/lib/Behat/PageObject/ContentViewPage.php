@@ -14,7 +14,6 @@ use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\URLAlias;
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\Behat\Core\Behat\ArgumentParser;
@@ -82,7 +81,7 @@ class ContentViewPage extends Page
     private $argumentParser;
 
     public function __construct(
-        Session $session, MinkParameters $minkParameters, Router $router,
+        Session $session, Router $router,
         RightMenu $rightMenu,
         SubItemsList $subItemList,
         ContentTypePicker $contentTypePicker,
@@ -96,7 +95,7 @@ class ContentViewPage extends Page
         UpperMenu $upperMenu,
         ArgumentParser $argumentParser
     ) {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
 
         $this->rightMenu = $rightMenu;
         $this->subItemList = $subItemList;

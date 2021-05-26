@@ -47,7 +47,7 @@ class ContentTypePage extends Page
         Table $contentTypeDataTable,
         Table $fieldTable)
     {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
         $this->contentTypeService = $contentTypeService;
         $this->contentTypeDataTable = $contentTypeDataTable->withParentLocator($this->getLocator('contentTypeDataTable'));
         $this->fieldTable = $fieldTable->withParentLocator($this->getLocator('contentFieldsTable'));

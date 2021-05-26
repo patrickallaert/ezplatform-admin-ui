@@ -12,7 +12,6 @@ use Exception;
 use EzSystems\Behat\Browser\Element\ElementInterface;
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\RightMenu;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\UniversalDiscoveryWidget;
@@ -22,9 +21,9 @@ class RoleUpdatePage extends AdminUpdateItemPage
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\UniversalDiscoveryWidget */
     private $universalDiscoveryWidget;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, Router $router, RightMenu $rightMenu, UniversalDiscoveryWidget $universalDiscoveryWidget)
+    public function __construct(Session $session, Router $router, RightMenu $rightMenu, UniversalDiscoveryWidget $universalDiscoveryWidget)
     {
-        parent::__construct($session, $minkParameters, $router, $rightMenu);
+        parent::__construct($session, $router, $rightMenu);
         $this->universalDiscoveryWidget = $universalDiscoveryWidget;
     }
 

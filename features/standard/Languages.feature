@@ -1,4 +1,4 @@
-@IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce @passing
+@IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce
 Feature: Languages management
   As an administrator
   In order to customize my project

@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\FileUpload\FileUploadHelper;
 use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Notification;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\UniversalDiscoveryWidget;
@@ -25,21 +24,15 @@ class ImageAsset extends Image
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Notification */
     private $notification;
 
-    /** @var \EzSystems\Behat\Browser\FileUpload\FileUploadHelper */
-    private $fileUploadHelper;
-
     public function __construct(
         Session $session,
-        MinkParameters $minkParameters,
         FileUploadHelper $fileUploadHelper,
         UniversalDiscoveryWidget $universalDiscoveryWidget,
         Notification $notification
-    )
-    {
-        parent::__construct($session, $minkParameters, $fileUploadHelper);
+    ) {
+        parent::__construct($session, $fileUploadHelper);
         $this->universalDiscoveryWidget = $universalDiscoveryWidget;
         $this->notification = $notification;
-        $this->fileUploadHelper = $fileUploadHelper;
     }
 
     private const IMAGE_ASSET_NOTIFICATION_MESSAGE = 'The image has been published and can now be reused';

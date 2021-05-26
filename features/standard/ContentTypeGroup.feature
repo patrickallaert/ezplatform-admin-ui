@@ -1,4 +1,4 @@
-@IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce @passing
+@IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce
 Feature: Content type groups management
   As an administrator
   In order to customize my project
@@ -62,7 +62,7 @@ Feature: Content type groups management
     Then success notification that "Deleted Content Type group 'Test Content Type Group edited'." appears
       And there's no "Test Content Type Group edited" Content Type group on Content Type groups list
 
-  @javascript @common
+  @javascript
   Scenario: Non-empty Content type group cannot be deleted
     Given I open "Content Type groups" page in admin SiteAccess
     When there's non-empty "Content" Content Type group on Content Type groups list

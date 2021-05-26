@@ -15,7 +15,6 @@ use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Dialog;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 
 class ContentTypeGroupPage extends Page
 {
@@ -37,9 +36,9 @@ class ContentTypeGroupPage extends Page
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Dialog */
     private $dialog;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, Router $router, ContentTypeService $contentTypeService, Table $table, Dialog $dialog)
+    public function __construct(Session $session, Router $router, ContentTypeService $contentTypeService, Table $table, Dialog $dialog)
     {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
         $this->contentTypeService = $contentTypeService;
         $this->table = $table->withParentLocator($this->getLocator('tableContainer'));
         $this->dialog = $dialog;

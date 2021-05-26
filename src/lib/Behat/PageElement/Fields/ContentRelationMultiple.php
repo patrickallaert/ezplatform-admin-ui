@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\UniversalDiscoveryWidget;
 use PHPUnit\Framework\Assert;
@@ -24,9 +23,9 @@ class ContentRelationMultiple extends FieldTypeComponent
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table */
     private $table;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, UniversalDiscoveryWidget $universalDiscoveryWidget, Table $table)
+    public function __construct(Session $session, UniversalDiscoveryWidget $universalDiscoveryWidget, Table $table)
     {
-        parent::__construct($session, $minkParameters);
+        parent::__construct($session);
         $this->universalDiscoveryWidget = $universalDiscoveryWidget;
         $this->table = $table;
     }

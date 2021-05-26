@@ -15,7 +15,6 @@ use EzSystems\Behat\Browser\Routing\Router;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\RightMenu;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use PHPUnit\Framework\Assert;
 
 class AdminUpdateItemPage extends Page
@@ -23,9 +22,9 @@ class AdminUpdateItemPage extends Page
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\RightMenu */
     protected $rightMenu;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, Router $router, RightMenu $rightMenu)
+    public function __construct(Session $session, Router $router, RightMenu $rightMenu)
     {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
         $this->rightMenu = $rightMenu;
     }
 

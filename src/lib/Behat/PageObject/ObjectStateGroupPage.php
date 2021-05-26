@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 use eZ\Publish\API\Repository\Repository;
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Dialog;
@@ -41,9 +40,9 @@ class ObjectStateGroupPage extends Page
     /** @var mixed */
     private $expectedObjectStateGroupId;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, Router $router, Table $attributes, Table $objectStates, Dialog $dialog, Repository $repository)
+    public function __construct(Session $session, Router $router, Table $attributes, Table $objectStates, Dialog $dialog, Repository $repository)
     {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
         $this->dialog = $dialog;
         $this->attributes = $attributes->withParentLocator($this->getLocator('propertiesTable'));
         $this->objectStates = $objectStates->withParentLocator($this->getLocator('objectStatesTable'));

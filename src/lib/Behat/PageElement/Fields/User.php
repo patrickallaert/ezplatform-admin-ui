@@ -10,14 +10,13 @@ use EzSystems\Behat\Browser\Element\ElementInterface;
 use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use PHPUnit\Framework\Assert;
 
 class User extends FieldTypeComponent
 {
-    public function __construct(Session $session, MinkParameters $minkParameters)
+    public function __construct(Session $session)
     {
-        parent::__construct($session, $minkParameters);
+        parent::__construct($session);
     }
 
     protected function specifyLocators(): array

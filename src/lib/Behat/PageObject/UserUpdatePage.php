@@ -9,15 +9,14 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\RightMenu;
 use Traversable;
 
 class UserUpdatePage extends ContentUpdateItemPage
 {
-    public function __construct(Session $session, MinkParameters $minkParameters, Router $router, RightMenu $rightMenu, Traversable $fieldTypeComponents)
+    public function __construct(Session $session, Router $router, RightMenu $rightMenu, Traversable $fieldTypeComponents)
     {
-        parent::__construct($session, $minkParameters, $router, $rightMenu, $fieldTypeComponents);
+        parent::__construct($session, $router, $rightMenu, $fieldTypeComponents);
         $this->locators->replace(
             new VisibleCSSLocator(
                 'formElement',

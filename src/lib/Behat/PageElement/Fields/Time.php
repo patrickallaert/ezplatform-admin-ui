@@ -10,7 +10,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields;
 
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\DateAndTimePopup;
 use PHPUnit\Framework\Assert;
@@ -22,9 +21,9 @@ class Time extends FieldTypeComponent
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\DateAndTimePopup */
     private $dateAndTimePopup;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, DateAndTimePopup $dateAndTimePopup)
+    public function __construct(Session $session, DateAndTimePopup $dateAndTimePopup)
     {
-        parent::__construct($session, $minkParameters);
+        parent::__construct($session);
         $this->dateAndTimePopup = $dateAndTimePopup;
     }
 

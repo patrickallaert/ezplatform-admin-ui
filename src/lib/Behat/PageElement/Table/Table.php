@@ -14,7 +14,6 @@ use EzSystems\Behat\Browser\Locator\CSSLocator;
 use EzSystems\Behat\Browser\Locator\LocatorCollection;
 use EzSystems\Behat\Browser\Locator\LocatorInterface;
 use Behat\Mink\Session;
-use EzSystems\Behat\Browser\Routing\Router;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Pagination;
 use PHPUnit\Framework\Assert;
@@ -44,7 +43,7 @@ class Table extends Component implements TableInterface
         TableFactory $tableFactory,
         Pagination $pagination)
     {
-        parent::__construct($session, $minkParameters);
+        parent::__construct($session);
         $this->pagination = $pagination;
         $this->parentLocatorChanged = true;
         $this->parentLocator = $this->getLocator('parent');

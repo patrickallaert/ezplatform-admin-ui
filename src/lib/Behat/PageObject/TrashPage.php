@@ -10,7 +10,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Dialog;
@@ -34,13 +33,13 @@ class TrashPage extends Page
     private $table;
 
     public function __construct(
-        Session $session, MinkParameters $minkParameters, Router $router,
+        Session $session, Router $router,
         UniversalDiscoveryWidget $universalDiscoveryWidget,
         Dialog $dialog,
         RightMenu $rightMenu,
         Table $table)
     {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
         $this->universalDiscoveryWidget = $universalDiscoveryWidget;
         $this->dialog = $dialog;
         $this->rightMenu = $rightMenu;

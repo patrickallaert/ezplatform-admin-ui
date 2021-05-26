@@ -1,4 +1,4 @@
-@IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce @passing
+@IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce
 Feature: Content items creation
   As an administrator
   In order to manage content to my site

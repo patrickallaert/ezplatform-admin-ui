@@ -12,7 +12,6 @@ use eZ\Publish\API\Repository\Repository;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Dialog;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
@@ -42,14 +41,14 @@ class RolePage extends Page
     private $assignments;
 
     public function __construct(
-        Session $session, MinkParameters $minkParameters, Router $router,
+        Session $session, Router $router,
         TableNavigationTab $tableNavigationTab,
         Dialog $dialog,
         Repository $repository,
         Table $policies,
         Table $assignments
     ) {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
         $this->tableNavigationTab = $tableNavigationTab;
         $this->dialog = $dialog;
         $this->repository = $repository;

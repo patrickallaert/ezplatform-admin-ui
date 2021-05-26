@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 use eZ\Publish\API\Repository\Repository;
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table;
@@ -31,9 +30,9 @@ class ObjectStatePage extends Page
     /** @var \EzSystems\EzPlatformAdminUi\Behat\PageElement\Table\Table */
     private $table;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, Router $router, Repository $repository, Table $table)
+    public function __construct(Session $session, Router $router, Repository $repository, Table $table)
     {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
         $this->repository = $repository;
         $this->table = $table;
     }

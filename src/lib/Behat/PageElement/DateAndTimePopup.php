@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageElement;
 use DateTime;
 use EzSystems\Behat\Browser\Component\Component;
 use Behat\Mink\Session;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use PHPUnit\Framework\Assert;
 
@@ -37,9 +36,9 @@ class DateAndTimePopup extends Component
     /** @var \EzSystems\Behat\Browser\Locator\VisibleCSSLocator */
     private $parentLocator;
 
-    public function __construct(Session $session, MinkParameters $minkParameters)
+    public function __construct(Session $session)
     {
-        parent::__construct($session, $minkParameters);
+        parent::__construct($session);
         $this->parentLocator = VisibleCSSLocator::empty();
     }
 

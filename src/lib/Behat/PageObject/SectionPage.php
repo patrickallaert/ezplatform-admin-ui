@@ -11,7 +11,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 use eZ\Publish\API\Repository\Repository;
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Dialog;
@@ -51,13 +50,13 @@ class SectionPage extends Page
     private $repository;
 
     public function __construct(
-        Session $session, MinkParameters $minkParameters, Router $router,
+        Session $session, Router $router,
         Table $contentItemsTable,
         Table $sectionInformationTable,
         Dialog $dialog,
         Repository $repository)
     {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
         $this->contentItemsTable = $contentItemsTable->withParentLocator($this->getLocator('contentItemsTable'))->endConfiguration();
         $this->sectionInformationTable = $sectionInformationTable->withParentLocator($this->getLocator('sectionInfoTable'))->endConfiguration();
         $this->dialog = $dialog;

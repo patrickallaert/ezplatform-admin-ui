@@ -13,7 +13,6 @@ use EzSystems\Behat\Browser\FileUpload\FileUploadHelper;
 use EzSystems\Behat\Browser\Locator\CSSLocator;
 use EzSystems\Behat\Browser\Locator\CssLocatorBuilder;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use PHPUnit\Framework\Assert;
 
 class File extends FieldTypeComponent
@@ -21,9 +20,9 @@ class File extends FieldTypeComponent
     /** @var \EzSystems\Behat\Browser\FileUpload\FileUploadHelper */
     private $fileUploadHelper;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, FileUploadHelper $fileUploadHelper)
+    public function __construct(Session $session, FileUploadHelper $fileUploadHelper)
     {
-        parent::__construct($session, $minkParameters);
+        parent::__construct($session);
         $this->fileUploadHelper = $fileUploadHelper;
     }
 

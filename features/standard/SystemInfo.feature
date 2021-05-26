@@ -1,4 +1,4 @@
-@systemInformation @IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce @passing
+@systemInformation @IbexaOSS @IbexaContent @IbexaExperience @IbexaCommerce
 Feature: System info verification
   As an administrator
   In order to customize my website
@@ -28,7 +28,7 @@ Feature: System info verification
         | ezsystems/ezplatform-kernel             |
         | ezsystems/ezplatform-content-forms      |
 
-  @javascript @common
+  @javascript
   Scenario: Check Repository System Information
     When I go to "Repository" tab in System Information
     Then I see "Repository" system information table

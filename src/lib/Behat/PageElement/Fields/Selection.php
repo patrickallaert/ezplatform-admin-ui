@@ -30,6 +30,7 @@ class Selection extends FieldTypeComponent
         $fieldSelector = CSSLocatorBuilder::base($this->parentLocator)
             ->withDescendant($this->getLocator('selectBar'))
             ->build();
+
         return [$this->getHTMLPage()->find($fieldSelector)->getValue()];
     }
 

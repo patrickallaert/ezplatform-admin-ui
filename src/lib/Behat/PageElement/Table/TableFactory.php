@@ -1,11 +1,13 @@
 <?php
 
-
+/**
+ * @copyright Copyright (C) eZ Systems AS. All rights reserved.
+ * @license For full copyright and license information view LICENSE file distributed with this source code.
+ */
 namespace EzSystems\EzPlatformAdminUi\Behat\PageElement\Table;
 
 use EzSystems\Behat\Browser\Element\ElementInterface;
 use EzSystems\Behat\Browser\Locator\LocatorCollection;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use Behat\Mink\Session;
 
 class TableFactory
@@ -13,20 +15,15 @@ class TableFactory
     /** @var Session */
     private $session;
 
-    /** @var MinkParameters */
-    private $minkParameters;
-
-    public function __construct(Session $session, MinkParameters $minkParameters)
+    public function __construct(Session $session)
     {
         $this->session = $session;
-        $this->minkParameters = $minkParameters;
     }
 
     public function createRow(ElementInterface $element, LocatorCollection $locatorCollection): TableRow
     {
         return new TableRow(
             $this->session,
-            $this->minkParameters,
             $element,
             $locatorCollection
         );

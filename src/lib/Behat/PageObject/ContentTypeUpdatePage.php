@@ -29,7 +29,7 @@ class ContentTypeUpdatePage extends AdminUpdateItemPage
         RightMenu $rightMenu,
         Notification $notification
     ) {
-        parent::__construct($session, $minkParameters, $router, $rightMenu);
+        parent::__construct($session, $router, $rightMenu);
         $this->notification = $notification;
     }
 

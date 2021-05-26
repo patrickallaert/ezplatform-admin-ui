@@ -14,7 +14,6 @@ use EzSystems\Behat\Browser\Locator\LocatorCollection;
 use EzSystems\Behat\Browser\Locator\LocatorInterface;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use Behat\Mink\Session;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 
 class TableRow extends Component
 {
@@ -24,9 +23,9 @@ class TableRow extends Component
     /** @var \EzSystems\Behat\Browser\Locator\LocatorCollection */
     private $locatorCollection;
 
-    public function __construct(Session $session, MinkParameters $minkParameters, ElementInterface $element, LocatorCollection $locatorCollection)
+    public function __construct(Session $session, ElementInterface $element, LocatorCollection $locatorCollection)
     {
-        parent::__construct($session, $minkParameters);
+        parent::__construct($session);
         $this->element = $element;
         $this->locatorCollection = $locatorCollection;
     }
