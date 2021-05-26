@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EzSystems\EzPlatformAdminUi\Behat\BusinessContext;
+namespace EzSystems\EzPlatformAdminUi\Behat\BrowserContext;
 
 use Behat\Behat\Context\Context;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\UpperMenu;

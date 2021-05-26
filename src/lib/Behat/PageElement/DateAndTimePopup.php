@@ -69,11 +69,7 @@ class DateAndTimePopup extends Component
         );
     }
 
-    /**
-     * @param string $hour Hour to set
-     * @param string $minute Minute to set
-     */
-    public function setTime(string $hour, string $minute): void
+    public function setTime(int $hour, int $minute): void
     {
         $isTimeOnly = $this->getHTMLPage()->findAll($this->getLocator('timeOnly'))->any();
 
