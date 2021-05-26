@@ -31,12 +31,12 @@ matrix:
     - name: "Admin-UI tests on Clean P"
       env:
         - COMPOSE_FILE="doc/docker/base-dev.yml:doc/docker/selenium.yml"
-        - BEHAT_OPTS="--profile=adminui --suite=adminui --tags=~@broken -c=behat_ibexa_oss.yaml"
+        - BEHAT_OPTS="--suite=admin-ui --tags=~@broken -c=behat_ibexa_oss.yaml"
     - name: "Admin UI tests using different personas"
       env:
         - COMPOSE_FILE="doc/docker/base-dev.yml:doc/docker/selenium.yml"
         - SETUP_BEHAT_OPTS="--profile=setup --suite=personas -c=behat_ibexa_oss.yaml"
-        - BEHAT_OPTS="--profile=adminui --suite=personas -c=behat_ibexa_oss.yaml"
+        - BEHAT_OPTS="--suite=personas -c=behat_ibexa_oss.yaml"
 
 notifications:
   slack:
