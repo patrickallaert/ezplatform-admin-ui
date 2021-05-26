@@ -10,7 +10,6 @@ namespace EzSystems\EzPlatformAdminUi\Behat\PageObject;
 
 use Behat\Mink\Session;
 use EzSystems\Behat\Browser\Routing\Router;
-use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use EzSystems\Behat\Browser\Page\Page;
 use EzSystems\Behat\Browser\Locator\VisibleCSSLocator;
 use EzSystems\EzPlatformAdminUi\Behat\PageElement\Fields\FieldTypeComponent;
@@ -29,13 +28,12 @@ class ContentUpdateItemPage extends Page
     private $fieldTypeComponents;
 
     public function __construct(
-        Session $session, 
-        MinkParameters $minkParameters, 
+        Session $session,
         Router $router,
         RightMenu $rightMenu,
         Traversable $fieldTypeComponents
     ) {
-        parent::__construct($session, $minkParameters, $router);
+        parent::__construct($session, $router);
         $this->rightMenu = $rightMenu;
         $this->fieldTypeComponents = iterator_to_array($fieldTypeComponents);
     }
