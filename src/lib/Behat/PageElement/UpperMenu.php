@@ -33,7 +33,10 @@ class UpperMenu extends Component
 
     public function getNotificationsCount(): int
     {
-        return (int) $this->getHTMLPage()->find($this->getLocator('pendingNotificationsCount'))->getAttribute('data-count');
+        return (int) $this->getHTMLPage()
+            ->setTimeout(5)
+            ->find($this->getLocator('pendingNotificationsCount'))
+            ->getAttribute('data-count');
     }
 
     public function chooseFromUserDropdown(string $option): void

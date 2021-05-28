@@ -40,10 +40,10 @@ class UserNotificationPopup extends Component
 
     public function verifyIsLoaded(): void
     {
-        Assert::assertContains(
-            'Notifications',
-            $this->getHTMLPage()->find($this->getLocator('notificationsPopupTitle'))->getText()
-        );
+        $this->getHTMLPage()
+            ->setTimeout(5)
+            ->find($this->getLocator('notificationsPopupTitle'))
+            ->assert()->textContains('Notifications');
     }
 
     protected function specifyLocators(): array

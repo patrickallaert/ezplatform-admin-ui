@@ -28,7 +28,7 @@ class DashboardPage extends Page
     public function switchTab(string $tableName, string $tabName)
     {
         $this->getHTMLPage()
-            ->findAll($this->getLocator('tableTitle'))->getByText($tableName)
+            ->findAll($this->getLocator('tableSelector'))->getByChildElementText($this->getLocator('tableTitle'), $tableName)
             ->findAll($this->getLocator('tableTab'))->getByText($tabName)
             ->click();
     }

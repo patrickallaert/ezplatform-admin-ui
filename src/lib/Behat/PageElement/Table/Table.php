@@ -29,7 +29,7 @@ class Table extends Component implements TableInterface
     private $parentElement;
 
     /** @var bool */
-    private $parentLocatorChanged;
+    private $isParentElementSet;
 
     /** @var \EzSystems\Behat\Browser\Locator\VisibleCSSLocator */
     private $parentLocator;
@@ -39,13 +39,12 @@ class Table extends Component implements TableInterface
 
     public function __construct(
         Session $session,
-        MinkParameters $minkParameters,
         TableFactory $tableFactory,
         Pagination $pagination)
     {
         parent::__construct($session);
         $this->pagination = $pagination;
-        $this->parentLocatorChanged = true;
+        $this->isParentElementSet = false;
         $this->parentLocator = $this->getLocator('parent');
         $this->tableFactory = $tableFactory;
     }
@@ -251,7 +250,6 @@ class Table extends Component implements TableInterface
     public function withParentLocator(CSSLocator $locator): self
     {
         $this->parentLocator = $locator;
-        $this->parentLocatorChanged = true;
 
         return $this;
     }
@@ -276,7 +274,7 @@ class Table extends Component implements TableInterface
 
     private function setParentElement()
     {
-        if (!$this->parentLocatorChanged) {
+        if ($this->isParentElementSet) {
             return;
         }
 
@@ -284,7 +282,7 @@ class Table extends Component implements TableInterface
             ? $this->getHTMLPage()->find($this->parentLocator)
             : $this->getHTMLPage();
 
-        $this->parentLocatorChanged = false;
+        $this->isParentElementSet = true;
     }
 
     private function getTableCellLocator(int $headerPosition, string $identifier = 'tableCell'): CSSLocator
@@ -306,7 +304,7 @@ class Table extends Component implements TableInterface
 
         Assert::assertCount(
             count($searchedHeaders), $foundHeaders,
-            sprintf('Could not find all expected headersin the table. Found: %s', implode(',', $foundHeaders))
+            sprintf('Could not find all expected headers in the table. Found: %s', implode(',', $foundHeaders))
         );
 
         return $foundHeaders;
